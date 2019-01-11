@@ -135,6 +135,7 @@ public class DefaultDeploymentScenarioGenerator extends AnnotationDeploymentScen
         }
 
         description.shouldBeTestable(anno.testable());
+        description.shouldBeManaged(anno.managed());
 
         return Collections.singletonList(description);
     }

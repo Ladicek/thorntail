@@ -24,6 +24,7 @@ import org.jboss.arquillian.container.test.spi.client.deployment.DeploymentScena
 import org.jboss.arquillian.container.test.spi.client.protocol.Protocol;
 import org.jboss.arquillian.core.spi.LoadableExtension;
 import org.jboss.arquillian.test.spi.enricher.resource.ResourceProvider;
+import org.wildfly.swarm.arquillian.adapter.resources.ManualControllerProvider;
 import org.wildfly.swarm.arquillian.adapter.resources.SwarmURIResourceProvider;
 import org.wildfly.swarm.arquillian.adapter.resources.SwarmURLResourceProvider;
 import org.wildfly.swarm.arquillian.daemon.protocol.DaemonProtocol;
@@ -37,6 +38,7 @@ public class WildFlySwarmExtension implements LoadableExtension {
         builder.service(Protocol.class, DaemonProtocol.class)
                 .service(AuxiliaryArchiveAppender.class, WildFlySwarmDeploymentAppender.class)
                 .service(DeployableContainer.class, WildFlySwarmContainer.class)
+                .service(ResourceProvider.class, ManualControllerProvider.class)
                 .override(DeploymentScenarioGenerator.class, AnnotationDeploymentScenarioGenerator.class, DefaultDeploymentScenarioGenerator.class)
                 .override(ResourceProvider.class, URLResourceProvider.class, SwarmURLResourceProvider.class)
                 .override(ResourceProvider.class, URIResourceProvider.class, SwarmURIResourceProvider.class)

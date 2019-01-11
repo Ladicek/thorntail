@@ -21,6 +21,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * The <i>name</i> of the Arquillian deployment is the fully qualified name of the test class
+ * (i.e., the class annotated with {@code @DefaultDeployment}).
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
@@ -38,6 +42,8 @@ public @interface DefaultDeployment {
     Type type() default Type.WAR;
 
     boolean testable() default true;
+
+    boolean managed() default true;
 
     Class<?> main() default Void.class;
 
